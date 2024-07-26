@@ -1,25 +1,43 @@
 # 1password integration with iTerm on macOS.
 
-install choose-gui
-        echo "usage: 1p <cmd>"
-        echo '  Use one password CLI to choose passwords for terminals'
-        echo ' specially designed for iterm2 and macOS by default'
-        echo
-        echo '  1p list'
-        echo '          list all keys in 1P_TAG'
-        echo '  1p choose'
-        echo '          getpw ITEM from 1P_TAG using FZF or other chooser.'
-        echo '          adds a special item named 'clear' which will clear'
-        echo '           the cache and let you choose again.'
-        echo '  1p get <item name>'
-        echo '          getpw ITEM from 1P_TAG'
-        echo '  1p clear'
-        echo '          clear the list cache'
-        echo
-        echo 'requires:'
-        echo '  op cli(with biometrics): https://developer.1password.com/docs/cli/'
-        echo '  jq: https://stedolan.github.io/jq/'
-        echo '  on MacOS:'
-        echo '          choose: https://github.com/sdegutis/choose'
-        echo '  otherwise:'
-        echo '          fzf: https://github.com/junegunn/fzf'
+## Setup:
+
+```sh
+brew install choose-gui jq 1password-cli
+```
+
+iTerm2/Settings/Keys
+click the plus in bottom left and select a key ( I like CMD+/)
+action: Run Coprocess
+
+The action should be `1p choose` you probably want to add the full
+path to the 1p binary.
+
+You want it to apply to the current session only(i.e. the one you were just typing in.)
+
+The very first time you run it, 1password might prompt you a bunch for access.
+
+
+## usage: 1p <cmd>
+
+Use one password CLI to choose passwords for terminals
+specially designed for iterm2 and macOS by default
+
+ * 1p list  - list all keys in 1P_TAG
+ * 1p choose - choose item
+ * 1p get <item name>
+ * 1p clear  - clear the list cache
+
+## requires:
+ * op cli(with biometrics): https://developer.1password.com/docs/cli/
+ * jq: https://stedolan.github.io/jq/
+ * choose: https://github.com/chipsenkbeil/choose OR https://github.com/sdegutis/choose
+    `brew install choose-gui` works
+
+ * iTerm2: https://iterm2.com/
+
+## Troubleshooting:
+
+Ensure ~/.config/1p/ exists and is writeable.
+Ensure `op whoami` returns something reasonable.
+try running locally outside of the coprocess.

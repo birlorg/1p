@@ -25,10 +25,10 @@
 if [ -z "$OP_TAG" ]; then
     OP_TAG="iterm"
 fi
-OP_BIN="/usr/local/bin/op"
-JQ_BIN="/usr/local/bin/jq"
+OP_BIN="/opt/homebrew/bin/op"
+JQ_BIN="/opt/homebrew/bin/jq"
 # for macOS instead of fzf use: https://github.com/sdegutis/choose
-CHOOSE_BIN="/usr/local/bin/choose"
+CHOOSE_BIN="/opt/homebrew/Cellar/choose-gui/1.3.1/bin/choose"
 CACHE_DIR="${HOME}/.config/1p"
 if [ ! -f  "$CHOOSE_BIN" ]; then
 	CHOOSE_BIN='fzf'
