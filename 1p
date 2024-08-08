@@ -49,7 +49,7 @@ usage() {
 	echo '		getpw ITEM from 1P_TAG'
 	echo '  1p clear'
 	echo '		clear the list cache'
-	echo 
+	echo
 	echo 'requires:'
 	echo '	op cli(with biometrics): https://developer.1password.com/docs/cli/'
 	echo '	jq: https://stedolan.github.io/jq/'
@@ -79,7 +79,7 @@ get() {
 	# how to get the ID, but not really needed.
 	ITEM=$2
 	ID=$(list_raw | $JQ_BIN --raw-output ".[] | select(.title==\"${ITEM}\").id")
-	$OP_BIN --cache item get --fields password "${ID}"
+	$OP_BIN --cache item get "${ID}" --fields password --reveal
 }
 
 choose() {
@@ -90,7 +90,7 @@ choose() {
 		ITEM=$(list | ${CHOOSE_BIN})
 	fi
 	ID=$(list_raw | $JQ_BIN --raw-output ".[] | select(.title==\"${ITEM}\").id")
-	$OP_BIN --cache item get --fields password "${ID}"
+	$OP_BIN --cache item get "${ID}" --fields password --reveal
 }
 
 #######################################################################
